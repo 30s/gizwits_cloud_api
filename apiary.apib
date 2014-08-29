@@ -5,7 +5,11 @@ HOST: http://cloud.api.gizwits.com
 
 # Group API for third-party clouds
 
-## Devices [/devices]
+## Devices [/devices{?product_key}]
+
++ Parameters
+    + product_key (optional, string, `abadc`)
+
 ### Register Devices [POST]
 
 + Request (application/json)
@@ -35,6 +39,32 @@ HOST: http://cloud.api.gizwits.com
                 }, {
                     "did": "absew",
                     "mac": "112233445566"
+                }]
+            }
+
+### Get Devices [GET]
+
+**Not mature.**
+
++ Request (application/json)
+
+    + Header
+        
+            X-Gizwits-Application-Id: {appid}
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "devices": [{
+                    "pdid": "absew",
+                    "mac": "112233445566",
+                    "puids": ["adfadf", "adafd"]
+                }, {
+                    "pdid": "absew",
+                    "mac": "112233445566",
+                    "puids": ["adfadf", "adafd"]
                 }]
             }
             
@@ -84,9 +114,12 @@ HOST: http://cloud.api.gizwits.com
             
 + Response 200 (application/json)
 
-## Device History Data [/devdata]
+## Device History Data [/devdata/{did}]
 
-### Save history Data [POST]
++ Parameters
+    + did (required, string, `abadc`)
+
+### Save History Data [POST]
 
 + Request (application/json)
 
@@ -98,14 +131,58 @@ HOST: http://cloud.api.gizwits.com
     
             {
                 "data": [{
-                    "did": "112233445566",
                     "ts": 123239009,
                     "payload": "aieowkefmm"
                 }, {
-                    "did": "112233445566",
                     "ts": 123239009,
                     "payload": "aieowkefmm"
                 }]
             }
             
 + Response 201 (application/json)
+
+### Get history Data [GET]
+
++ Request (application/json)
+
+    + Header
+        
+            X-Gizwits-Application-Id: {appid}
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "data": [{
+                    "ts": 123239009,
+                    "payload": "aieowkefmm"
+                }, {
+                    "ts": 123239009,
+                    "payload": "aieowkefmm"
+                }]
+            }
+            
+## Remote Control Device [/devices/{did}]
+
++ Parameters
+    + did (required, string, `abadc`)
+    
+### Set Data to Device [POST]
+
++ Request (application/json)
+
+    + Header
+        
+            X-Gizwits-Application-Id: {appid}
+            
+    + Body
+        
+            {
+                "data": [{
+                    "attr": "abc",
+                    "val": 1
+                }]
+            }
+
++ Response 200 (application/json)
