@@ -61,3 +61,25 @@ HOST: http://cloud.api.gizwits.com
             }
             
 + Response 201 (application/json)
+
+### Delete Bindings [DELETE]
+
++ Request (application/json)
+
+    + Header
+        
+            X-Gizwits-Application-Id: {appid}
+            
+    + Body
+    
+            {
+                "bindings": [{
+                    "user": "112233445566",
+                    "devices": ["abcde", "adfade"]
+                }, {
+                    "user": "112233445566",
+                    "devices": ["abcde", "adfade"]
+                }]
+            }
+            
++ Response 200 (application/json)
