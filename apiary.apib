@@ -5,7 +5,7 @@ HOST: http://cloud.api.gizwits.com
 
 # Group API for third-party clouds
 
-## Devices [/devices{?product_key}]
+## Devices [/devices?{product_key}]
 
 ### Register Devices [POST]
 
@@ -41,7 +41,8 @@ HOST: http://cloud.api.gizwits.com
 
 ### Get Devices [GET]
 
-**Not mature.**
++ Parameters
+    + product_key (optional, string, `abcde`) ... If not provided, will return this cloud's own devices.
 
 + Request (application/json)
 
